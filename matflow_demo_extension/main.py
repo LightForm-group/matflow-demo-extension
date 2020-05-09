@@ -7,7 +7,7 @@ from matflow_demo_extension import (
     input_mapper,
     output_mapper,
     cli_format_mapper,
-    output_files_mapper,
+    register_output_file,
     func_mapper,
 )
 
