@@ -67,7 +67,7 @@ setup(
     name='matflow-demo-extension',
     packages=find_packages(),
     project_urls={
-        'GitHub': 'https://github.com/LightForm-group/matflow_demo_extension'
+        'GitHub': 'https://github.com/LightForm-group/matflow-demo-extension'
     },
     version=get_version(),
     zip_safe=True,
