@@ -3,12 +3,15 @@
 from random import randint
 from pathlib import Path
 
+from hpcflow import __version__ as hpcflow_version
+
 from matflow_demo_extension import (
     input_mapper,
     output_mapper,
     cli_format_mapper,
     register_output_file,
     func_mapper,
+    software_versions,
 )
 
 
@@ -139,3 +142,8 @@ def dummy_output_map_6b(path):
 @cli_format_mapper(input_name='parameter_1', task='dummy_task_1', method='method_1')
 def fmt_parameter_1(parameter_1):
     return '{}'.format(parameter_1)
+
+
+@software_versions()
+def get_versions():
+    return {'hpcflow dummy (Python)': {'version': hpcflow_version}}
