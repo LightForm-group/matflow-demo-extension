@@ -145,5 +145,5 @@ def fmt_parameter_1(parameter_1):
 
 
 @software_versions()
-def get_versions():
+def get_versions(executable='hpcflow'):
     return {'hpcflow dummy (Python)': {'version': hpcflow_version}}
