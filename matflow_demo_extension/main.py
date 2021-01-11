@@ -22,6 +22,16 @@ def dummy_input_map_1(path, parameter_1):
         handle.write(f'parameter_1: {parameter_1}\n')
 
 
+@input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2b', method='method_1')
+@input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2c', method='method_1')
+def dummy_input_map_2b(path, parameter_1, parameter_2, parameter_3):
+    with Path(path).open('w') as handle:
+        handle.write(f'{randint(0, 1e6)}\n')
+        handle.write(f'parameter_1: {parameter_1}\n')
+        handle.write(f'parameter_2: {parameter_2}\n')
+        handle.write(f'parameter_3: {parameter_3}\n')
+
+
 @input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2', method='method_1')
 def dummy_input_map_2(path, parameter_2, parameter_3):
     with Path(path).open('w') as handle:
@@ -30,12 +40,11 @@ def dummy_input_map_2(path, parameter_2, parameter_3):
         handle.write(f'parameter_3: {parameter_3}\n')
 
 
-@input_mapper(input_file='t2b_m1_infile_1', task='dummy_task_2b', method='method_1')
-def dummy_input_map_2b(path, parameter_2, parameter_3):
+@input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2d', method='method_1')
+def dummy_input_map_2d(path, parameter_2):
     with Path(path).open('w') as handle:
         handle.write(f'{randint(0, 1e6)}\n')
         handle.write(f'parameter_2: {parameter_2}\n')
-        handle.write(f'parameter_3: {parameter_3}\n')
 
 
 @input_mapper(input_file='t3_m1_infile_1', task='dummy_task_3', method='method_1')
@@ -89,12 +98,25 @@ def dummy_input_map_6(path, parameter_11, parameter_12):
 
 
 @input_mapper(input_file='t6b_m1_infile_1', task='dummy_task_6b', method='method_1')
-def dummy_input_map_6b(path, parameter_4_multiaxial, parameter_4_uniaxial, parameter_5):
+def dummy_input_map_6b(path, parameter_4_multiaxial, parameter_5):
     with Path(path).open('w') as handle:
         handle.write(f'{randint(0, 1e6)}\n')
-        handle.write('parameter_4_uniaxial: {}\n'.format(parameter_4_uniaxial))
         handle.write('parameter_4_multiaxial: {}\n'.format(parameter_4_multiaxial))
         handle.write('parameter_5: {}\n'.format(parameter_5))
+
+
+@input_mapper(input_file='t7_m1_infile_1', task='dummy_task_7', method='method_1')
+def dummy_input_map_7(path, parameter_2):
+    with Path(path).open('w') as handle:
+        handle.write(f'{randint(0, 1e6)}\n')
+        handle.write(f'parameter_2: {parameter_2}\n')
+
+
+@output_mapper(output_name='parameter_1', task='dummy_task_7', method='method_1')
+def dummy_output_map_7(path):
+    with Path(path).open('r') as handle:
+        parameter_1 = int(handle.readline().strip())
+    return parameter_1
 
 
 @output_mapper(output_name='parameter_2', task='dummy_task_1', method='method_1')
@@ -105,10 +127,20 @@ def dummy_output_map_1(path):
 
 
 @output_mapper(output_name='parameter_4', task='dummy_task_2', method='method_1')
+@output_mapper(output_name='parameter_4', task='dummy_task_2b', method='method_1')
+@output_mapper(output_name='parameter_4', task='dummy_task_2c', method='method_1')
+@output_mapper(output_name='parameter_5', task='dummy_task_2d', method='method_1')
 def dummy_output_map_2(path):
     with Path(path).open('r') as handle:
-        parameter_4 = int(handle.readline().strip())
-    return parameter_4
+        parameter_out = int(handle.readline().strip())
+    return parameter_out
+
+
+@output_mapper(output_name='parameter_2', task='dummy_task_2c', method='method_1')
+def dummy_output_map_2c(path):
+    with Path(path).open('r') as handle:
+        parameter_2 = int(handle.readline().strip()) + 2
+    return parameter_2
 
 
 @output_mapper(output_name='parameter_6', task='dummy_task_3', method='method_1')
