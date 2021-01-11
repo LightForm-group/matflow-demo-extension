@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.1.2] - 2021.01.11
+
+### Added
+
+- Add more dummy tasks to demonstrate parameter-modifying tasks.
+
 ## [0.1.1] - 2020.06.09
 
 ### Changed
