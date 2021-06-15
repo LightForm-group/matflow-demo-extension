@@ -32,6 +32,16 @@ def dummy_input_map_2b(path, parameter_1, parameter_2, parameter_3):
         handle.write(f'parameter_3: {parameter_3}\n')
 
 
+@input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2e', method='method_1')
+def dummy_input_map_2b(path, parameter_1, parameter_2, parameter_3, parameter_5):
+    with Path(path).open('w') as handle:
+        handle.write(f'{randint(0, 1e6)}\n')
+        handle.write(f'parameter_1: {parameter_1}\n')
+        handle.write(f'parameter_2: {parameter_2}\n')
+        handle.write(f'parameter_3: {parameter_3}\n')
+        handle.write(f'parameter_5: {parameter_5}\n')
+
+
 @input_mapper(input_file='t2_m1_infile_1', task='dummy_task_2', method='method_1')
 def dummy_input_map_2(path, parameter_2, parameter_3):
     with Path(path).open('w') as handle:
@@ -129,6 +139,7 @@ def dummy_output_map_1(path):
 @output_mapper(output_name='parameter_4', task='dummy_task_2', method='method_1')
 @output_mapper(output_name='parameter_4', task='dummy_task_2b', method='method_1')
 @output_mapper(output_name='parameter_4', task='dummy_task_2c', method='method_1')
+@output_mapper(output_name='parameter_4', task='dummy_task_2e', method='method_1')
 @output_mapper(output_name='parameter_5', task='dummy_task_2d', method='method_1')
 def dummy_output_map_2(path):
     with Path(path).open('r') as handle:
@@ -137,6 +148,7 @@ def dummy_output_map_2(path):
 
 
 @output_mapper(output_name='parameter_2', task='dummy_task_2c', method='method_1')
+@output_mapper(output_name='parameter_2', task='dummy_task_2e', method='method_1')
 def dummy_output_map_2c(path):
     with Path(path).open('r') as handle:
         parameter_2 = int(handle.readline().strip()) + 2
